@@ -38,6 +38,7 @@ def scrape_speeches(index_page, directory="output"):
     for li in speech_list.findAll("li"):
         title, date_str = li.text.split("[")
         link = li.find("a")["href"]
+        link = link.replace("//japan.kantei.go.jp","")
         date = datetime.strptime(date_str, "%B %d, %Y]").isoformat()
         text = get_speech_text(link)
 
